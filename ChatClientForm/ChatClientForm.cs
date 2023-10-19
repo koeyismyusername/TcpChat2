@@ -38,6 +38,7 @@ namespace ChatClientForm
         {
             InitializeComponent();
             _streamHandler = new DefaultStreamHandler();
+            IsRunning = false;
         }
 
         private async void btnConnect_Click(object sender, EventArgs e)
