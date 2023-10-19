@@ -23,6 +23,7 @@ namespace ChatClientForm
                 btnSend.Enabled = value;
                 numRoomId.Enabled = !value;
                 tBoxUsername.Enabled = !value;
+                tBoxMessage.Enabled = value;
             }
         }
 
@@ -93,7 +94,11 @@ namespace ChatClientForm
             while (IsRunning)
             {
                 (bool isClosed, Chat? chat) = await _streamHandler.ReadAsync<Chat>(_tcpClient!.GetStream());
-                if (isClosed) break;
+                if (isClosed)
+                {
+                    DisConnectClient();
+                    break;
+                }
 
                 if (chat is null) continue;
 
@@ -138,6 +143,12 @@ namespace ChatClientForm
         private async void BtnSend_Click(object sender, EventArgs e)
         {
             await _streamHandler.WriteAsync(_tcpClient!.GetStream(), MessagingChat);
+            tBoxMessage.Clear();
+        }
+
+        private void tBoxMessage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode is Keys.Enter) BtnSend_Click(sender, e);
         }
     }
 }

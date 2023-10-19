@@ -110,6 +110,7 @@
             tBoxMessage.Name = "tBoxMessage";
             tBoxMessage.Size = new Size(281, 23);
             tBoxMessage.TabIndex = 7;
+            tBoxMessage.KeyDown += tBoxMessage_KeyDown;
             // 
             // lBoxMessages
             // 

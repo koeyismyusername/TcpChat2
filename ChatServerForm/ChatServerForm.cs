@@ -41,6 +41,7 @@ namespace ChatServerForm
             _roomDict.Clear();
 
             StartServer();
+            lBoxMessages.Items.Add("서버가 준비되었습니다.");
 
             _ = HandleClientsAsync();
         }
@@ -91,15 +92,20 @@ namespace ChatServerForm
                 case ChatState.Connect:
                     AddClient(key, client);
                     SendToRoom(key, chat);
+                    lBoxMessages.Items.Add($"{chat.username}님이 입장했습니다.");
+                    lBoxClients.Items.Add(chat.username);
                     break;
 
                 case ChatState.Message:
                     SendToRoom(key, chat);
+                    lBoxMessages.Items.Add($"{chat.username}: {chat.message}");
                     break;
 
                 case ChatState.Close:
                     RemoveClient(key, client);
                     SendToRoom(key, chat);
+                    lBoxMessages.Items.Add($"{chat.username}님이 나갔습니다.");
+                    lBoxClients.Items.Remove(chat.username);
                     break;
 
                 default:
@@ -132,6 +138,7 @@ namespace ChatServerForm
         private void btnExit_Click(object sender, EventArgs e)
         {
             StopServer();
+            lBoxMessages.Items.Add("서버가 종료되었습니다.");
         }
 
         private void StopServer()
