@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             btnDisconnect = new Button();
-            btnCommect = new Button();
+            btnConnect = new Button();
             btnSend = new Button();
             labelRoomId = new Label();
             numRoomId = new NumericUpDown();
@@ -50,15 +50,15 @@
             btnDisconnect.UseVisualStyleBackColor = true;
             btnDisconnect.Click += BtnDisConnect_Click;
             // 
-            // btnCommect
+            // btnConnect
             // 
-            btnCommect.Location = new Point(218, 12);
-            btnCommect.Name = "btnCommect";
-            btnCommect.Size = new Size(75, 52);
-            btnCommect.TabIndex = 1;
-            btnCommect.Text = "연결하기";
-            btnCommect.UseVisualStyleBackColor = true;
-            btnCommect.Click += btnConnect_Click;
+            btnConnect.Location = new Point(218, 12);
+            btnConnect.Name = "btnConnect";
+            btnConnect.Size = new Size(75, 52);
+            btnConnect.TabIndex = 1;
+            btnConnect.Text = "연결하기";
+            btnConnect.UseVisualStyleBackColor = true;
+            btnConnect.Click += btnConnect_Click;
             // 
             // btnSend
             // 
@@ -133,7 +133,7 @@
             Controls.Add(numRoomId);
             Controls.Add(labelRoomId);
             Controls.Add(btnSend);
-            Controls.Add(btnCommect);
+            Controls.Add(btnConnect);
             Controls.Add(btnDisconnect);
             Name = "ChatClientForm";
             Text = "Client";
@@ -145,7 +145,7 @@
         #endregion
 
         private Button btnDisconnect;
-        private Button btnCommect;
+        private Button btnConnect;
         private Button btnSend;
         private Label labelRoomId;
         private NumericUpDown numRoomId;
