@@ -16,5 +16,15 @@ namespace ChatClientForm
         {
 
         }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tBoxUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
