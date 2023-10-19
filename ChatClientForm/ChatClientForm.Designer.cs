@@ -94,7 +94,6 @@
             tBoxUsername.Size = new Size(120, 23);
             tBoxUsername.TabIndex = 5;
             tBoxUsername.Text = "짱구";
-            tBoxUsername.TextChanged += tBoxUsername_TextChanged;
             // 
             // labelUsername
             // 

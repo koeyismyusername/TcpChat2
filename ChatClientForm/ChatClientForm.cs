@@ -30,10 +30,25 @@ namespace ChatClientForm
         public string Username { get => tBoxUsername.Text; }
         public string Message { get => tBoxMessage.Text; }
 
+        public Chat ConnectingChat { get => new Chat(RoomId, Username, Message, ChatState.Connect); }
+        public Chat MessagingChat { get => new Chat(RoomId, Username, Message, ChatState.Message); }
+        public Chat ClosingChat { get => new Chat(RoomId, Username, Message, ChatState.Close); }
+
         public ChatClientForm()
         {
             InitializeComponent();
+            _streamHandler = new DefaultStreamHandler();
+        }
 
+        private async void btnConnect_Click(object sender, EventArgs e)
+        {
+            lBoxMessages.Items.Clear();
+
+            IsRunning = await ConnectClientAsync(IPAddress.Parse("127.0.0.1"), 8080);
+            if (!IsRunning) return;
+
+            await _streamHandler.WriteAsync(_tcpClient!.GetStream(), ConnectingChat);
+            _ = HandleClientAsync();
         }
 
         /// <summary>
@@ -46,7 +61,7 @@ namespace ChatClientForm
         {
             bool isConnected = false;
 
-            _tcpClient?.Dispose();
+            _tcpClient?.Close();
             _tcpClient = new TcpClient();
 
             try
@@ -70,21 +85,6 @@ namespace ChatClientForm
             }
 
             return isConnected;
-        }
-
-        private void DisConnectClient()
-        {
-
-        }
-
-        private async void btnConnect_Click(object sender, EventArgs e)
-        {
-            lBoxMessages.Items.Clear();
-
-            IsRunning = await ConnectClientAsync(IPAddress.Parse("127.0.0.1"), 8080);
-            if (!IsRunning) return;
-
-            _ = HandleClientAsync();
         }
 
         private async Task HandleClientAsync()
@@ -121,14 +121,17 @@ namespace ChatClientForm
             }
         }
 
-        private void BtnDisConnect_Click(object sender, EventArgs e)
+        private async void BtnDisConnect_Click(object sender, EventArgs e)
         {
-
+            if (_tcpClient is not null) await _streamHandler.WriteAsync(_tcpClient.GetStream(), ClosingChat);
+            DisConnectClient();
         }
 
-        private void tBoxUsername_TextChanged(object sender, EventArgs e)
+        private void DisConnectClient()
         {
-
+            IsRunning = false;
+            _tcpClient?.Close();
+            _tcpClient = null;
         }
 
         private void BtnSend_Click(object sender, EventArgs e)
