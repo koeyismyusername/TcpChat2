@@ -134,9 +134,9 @@ namespace ChatClientForm
             _tcpClient = null;
         }
 
-        private void BtnSend_Click(object sender, EventArgs e)
+        private async void BtnSend_Click(object sender, EventArgs e)
         {
-
+            await _streamHandler.WriteAsync(_tcpClient!.GetStream(), MessagingChat);
         }
     }
 }
