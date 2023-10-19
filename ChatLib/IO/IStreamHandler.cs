@@ -22,6 +22,6 @@ namespace ChatLib.IO
         /// <param name="stream"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        Task<bool> WriteAsync(Stream stream, object content);
+        Task WriteAsync(Stream stream, object content);
     }
 }
