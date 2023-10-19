@@ -68,7 +68,7 @@
             btnSend.TabIndex = 2;
             btnSend.Text = "전송하기";
             btnSend.UseVisualStyleBackColor = true;
-            btnSend.Click += btnSend_Click;
+            btnSend.Click += BtnSend_Click;
             // 
             // labelRoomId
             // 
