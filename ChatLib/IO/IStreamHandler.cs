@@ -15,7 +15,7 @@ namespace ChatLib.IO
         /// <typeparam name="T">읽을 데이터 타입</typeparam>
         /// <param name="stream"></param>
         /// <returns></returns>
-        Task<(bool isEmpty, T? content)> ReadAsync<T>(Stream stream);
+        Task<(bool isClosed, T? content)> ReadAsync<T>(Stream stream);
         /// <summary>
         /// 비동기적으로 주어진 content를 stream을 통해 보냅니다.
         /// </summary>
