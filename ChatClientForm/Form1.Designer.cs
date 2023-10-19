@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             btnDisconnect = new Button();
+            btnCommect = new Button();
             SuspendLayout();
             // 
             // btnDisconnect
@@ -41,11 +42,22 @@
             btnDisconnect.UseVisualStyleBackColor = true;
             btnDisconnect.Click += BtnDisConnect_Click;
             // 
+            // btnCommect
+            // 
+            btnCommect.Location = new Point(218, 12);
+            btnCommect.Name = "btnCommect";
+            btnCommect.Size = new Size(75, 23);
+            btnCommect.TabIndex = 1;
+            btnCommect.Text = "연결하기";
+            btnCommect.UseVisualStyleBackColor = true;
+            btnCommect.Click += btnConnect_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(386, 332);
+            Controls.Add(btnCommect);
             Controls.Add(btnDisconnect);
             Name = "Form1";
             Text = "Form1";
@@ -55,5 +67,6 @@
         #endregion
 
         private Button btnDisconnect;
+        private Button btnCommect;
     }
 }
