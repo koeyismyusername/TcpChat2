@@ -1,6 +1,6 @@
 ﻿namespace ChatClientForm
 {
-    partial class Form1
+    partial class ChatClientForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -121,7 +121,7 @@
             lBoxMessages.Size = new Size(362, 214);
             lBoxMessages.TabIndex = 8;
             // 
-            // Form1
+            // ChatClientForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -135,8 +135,8 @@
             Controls.Add(btnSend);
             Controls.Add(btnCommect);
             Controls.Add(btnDisconnect);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "ChatClientForm";
+            Text = "Client";
             ((System.ComponentModel.ISupportInitialize)numRoomId).EndInit();
             ResumeLayout(false);
             PerformLayout();

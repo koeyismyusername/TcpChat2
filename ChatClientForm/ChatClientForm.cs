@@ -1,8 +1,8 @@
 namespace ChatClientForm
 {
-    public partial class Form1 : Form
+    public partial class ChatClientForm : Form
     {
-        public Form1()
+        public ChatClientForm()
         {
             InitializeComponent();
         }
