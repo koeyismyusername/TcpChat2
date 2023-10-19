@@ -30,6 +30,8 @@ namespace ChatServerForm
             _listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);
             _streamHandler = new DefaultStreamHandler();
             _roomDict = new Dictionary<long, List<TcpClient>>();
+
+            IsRunning = false;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -129,7 +131,18 @@ namespace ChatServerForm
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            StopServer();
+        }
 
+        private void StopServer()
+        {
+            IsRunning = false;
+            _listener.Stop();
+            
+            foreach (var room in _roomDict.Values)
+            {
+                room?.ForEach(c => c.GetStream().Close());
+            }
         }
     }
 }
